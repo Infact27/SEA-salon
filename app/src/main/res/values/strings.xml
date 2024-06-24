@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SEA salon</string>
+    <string name="prelog_text">Permudah hidupmu dari permasalan konstruksi, dan
+pertukangan dengan jaminan tukang
+berpengalaman dan terpercaya.</string>
+    <string name="prelog_header">Selamat Datang di SEA Salon!</string>
 </resources>
