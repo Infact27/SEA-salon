@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = "homepage"
                     ){
                         composable("homepage") { homepage(navController) }
+                        composable("reviewscreen") { reviewscreen(navController) }
                     }
                 }
             }

@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,11 +52,11 @@ fun homepage(navController: NavController) {
 //                    .background(Color.DarkGray, shape = RoundedCornerShape(16.dp))
             ){
                 Text(
-                    text = stringResource(R.string.prelog_header),
+                    text = "Selamat Datang di SEA Salon!",
                     modifier = Modifier
                         .fillMaxWidth(),
                     style = TextStyle(
-                        fontSize = 22.sp,
+                        fontSize = 26.sp,
                     ),
                     color = Color.Black,
                     fontWeight = FontWeight.Bold,
@@ -70,56 +71,67 @@ fun homepage(navController: NavController) {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Image(
-                painter = painterResource(R.drawable.pilihrole),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(400.dp)
-            )
             Text(
-                text = stringResource(R.string.prelog_header),
+                text = "Beauty and Elegance Redefined",
                 modifier = Modifier
                     .fillMaxWidth(),
                 style = TextStyle(
-                    fontSize = 22.sp,
+                    fontSize = 20.sp,
                 ),
                 color = Color.Black,
-                fontWeight = FontWeight.Bold,
+                fontStyle = FontStyle.Italic,
+                fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center,
             )
+            Spacer(Modifier.height(30.dp))
             Text(
-                text = stringResource(R.string.prelog_text),
+                text = "Services :" +
+                        "\n- Haircuts and Styling" +
+                        "\n- Manicure and Pedicure" +
+                        "\n- Facial Treatments",
                 modifier = Modifier
-                    .padding(start = 12.dp),
+                    .fillMaxWidth(),
                 color = Color.Black,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Start,
             )
             Spacer(Modifier.height(60.dp))
-            //        Tombol mitra
-            Button(
-                onClick = { navController.navigate("HomePageMitra") },
+            Text(
+                text = "Contact Details:\n" +
+                        "- Thomas\n" +
+                        "Phone Number: 08123456789\n" +
+                        "- Sekar\n" +
+                        "Phone Number: 08164829372\n",
                 modifier = Modifier
-                    .height(48.dp)
                     .fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = DarkBlue),
-            ) {
-                Text(
-                    text = "Mitra",
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-            Spacer(Modifier.height(8.dp))
-            //        Tombol pengguna
+                color = Color.Black,
+                textAlign = TextAlign.Start,
+            )
+
             Button(
-                onClick = { navController.navigate("PreLogin") },
+                onClick = { navController.navigate("reservasi") },
                 modifier = Modifier
                     .height(48.dp)
                     .fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = DarkBlue)
             ) {
                 Text(
-                    text = "Pengguna",
+                    text = "Buat Reservasi",
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+
+            Spacer(Modifier.height(8.dp))
+
+            Button(
+                onClick = { navController.navigate("reviewscreen") },
+                modifier = Modifier
+                    .height(48.dp)
+                    .fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = DarkBlue),
+            ) {
+                Text(
+                    text = "Berikan Review",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                 )
