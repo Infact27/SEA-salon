@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -29,7 +30,11 @@ fun ReviewScreen(navController: NavController) {
     var rating by remember { mutableStateOf(0) }
 
     Column(modifier = Modifier.padding(16.dp)) {
-        Text("Customer Reviews",)
+        Text("Customer Reviews",
+            modifier = Modifier
+            .fillMaxWidth(),
+            color = Color.Black,
+            textAlign = TextAlign.Start,)
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -39,7 +44,12 @@ fun ReviewScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text("Add a Review")
+        Text("Add a Review",
+            modifier = Modifier
+                .fillMaxWidth(),
+            color = Color.Black,
+            textAlign = TextAlign.Start,
+        )
 
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -99,13 +109,23 @@ fun ReviewScreen(navController: NavController) {
 @Composable
 fun ReviewItem(review: Review) {
     Column(modifier = Modifier.padding(8.dp)) {
-        Text(text = review.user)
+        Text(text = review.user,
+            modifier = Modifier
+                .fillMaxWidth(),
+            color = Color.Black,
+            textAlign = TextAlign.Start,
+        )
         Row {
             repeat(review.rating) {
                 Icon(imageVector = Icons.Default.Star, contentDescription = null, tint = Color.Yellow)
             }
         }
-        Text(text = review.comment)
+        Text(text = review.comment,
+            modifier = Modifier
+                .fillMaxWidth(),
+            color = Color.Black,
+            textAlign = TextAlign.Start,
+        )
     }
 }
 
