@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.seasalon.ui.theme.SEASalonTheme
+import com.google.firebase.firestore.FirebaseFirestore
 
 data class Review(val user: String, val rating: Int, val comment: String)
 
@@ -38,6 +39,7 @@ fun ReviewScreen(navController: NavController) {
     var user by remember { mutableStateOf(TextFieldValue("")) }
     var comment by remember { mutableStateOf(TextFieldValue("")) }
     var rating by remember { mutableStateOf(0) }
+    val db = FirebaseFirestore.getInstance()
 
     Column(modifier = Modifier.padding(16.dp)) {
         Text("Customer Reviews",
@@ -93,7 +95,18 @@ fun ReviewScreen(navController: NavController) {
 
         Row {
             for (i in 1..5) {
-                IconButton(onClick = { rating = i }) {
+                IconButton(
+                        onClick = {
+                            rating = i
+
+                            val review = hashMapOf(
+                            "user" to user,
+                            "comment" to comment,
+                            "rating" to rating,
+                        )
+                            db.collection("review").add(review)
+                        }
+                ) {
                     Icon(
                         imageVector = Icons.Default.Star,
                         contentDescription = null,

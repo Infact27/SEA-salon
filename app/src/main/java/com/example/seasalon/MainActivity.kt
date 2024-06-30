@@ -11,10 +11,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.seasalon.ui.theme.SEASalonTheme
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         setContent {
             SEASalonTheme {
                 // A surface container using the 'background' color from the theme
@@ -27,8 +29,9 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         startDestination = "homepage"
                     ){
-                        composable("homepage") { homepage(navController) }
+                        composable("homepage") { Homepage(navController) }
                         composable("reviewscreen") { ReviewScreen(navController) }
+                        composable("reservasi") {Reservasi(navController)}
                     }
                 }
             }
