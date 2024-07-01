@@ -10,6 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.seasalon.login.AuthViewModel
+import com.example.seasalon.login.LoginPage
+import com.example.seasalon.login.User
 import com.example.seasalon.ui.theme.SEASalonTheme
 import com.google.firebase.FirebaseApp
 
@@ -27,8 +30,9 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "homepage"
+                        startDestination = "loginpage"
                     ){
+                        composable("loginpage") { LoginPage(navController, AuthViewModel() , onLoginSuccess = {User -> User} )}
                         composable("homepage") { Homepage(navController) }
                         composable("reviewscreen") { ReviewScreen(navController) }
                         composable("reservasi") {Reservasi(navController)}

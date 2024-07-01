@@ -1,18 +1,17 @@
 package com.example.seasalon.login
 
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import org.mindrot.jbcrypt.BCrypt
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Auth {
-
     private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
     fun registerUser(email: String, password: String, user: User, onComplete: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val userId = auth.currentUser?.uid ?: ""
-                FirebaseDatabase.getInstance().getReference("Users").child(userId).setValue(user).addOnCompleteListener {
+                firestore.collection("Users").document(userId).set(user.copy(userId = userId)).addOnCompleteListener {
                     onComplete(it.isSuccessful)
                 }
             } else {
@@ -25,8 +24,8 @@ class Auth {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val userId = auth.currentUser?.uid ?: ""
-                FirebaseDatabase.getInstance().getReference("Users").child(userId).get().addOnSuccessListener {
-                    val user = it.getValue(User::class.java)
+                firestore.collection("Users").document(userId).get().addOnSuccessListener { document ->
+                    val user = document.toObject(User::class.java)
                     onComplete(true, user)
                 }
             } else {

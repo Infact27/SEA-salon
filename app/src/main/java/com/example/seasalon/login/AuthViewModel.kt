@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import java.util.UUID
 
 class AuthViewModel : ViewModel() {
-    private val authRepository = Auth()
+    private val Auth = Auth()
 
     fun registerUser(email: String, password: String, fullName: String, phoneNumber: String, onComplete: (Boolean) -> Unit) {
         val user = User(
@@ -14,10 +14,10 @@ class AuthViewModel : ViewModel() {
             phoneNumber = phoneNumber,
             role = "Customer"
         )
-        authRepository.registerUser(email, password, user, onComplete)
+        Auth.registerUser(email, password, user, onComplete)
     }
 
     fun loginUser(email: String, password: String, onComplete: (Boolean, User?) -> Unit) {
-        authRepository.loginUser(email, password, onComplete)
+        Auth.loginUser(email, password, onComplete)
     }
 }
