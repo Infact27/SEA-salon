@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "loginpage"
+                        startDestination = "homepage"
                     ){
                         composable("loginpage") { LoginPage(navController, AuthViewModel() , onLoginSuccess = {User -> User} )}
                         composable("homepage") { Homepage(navController) }
